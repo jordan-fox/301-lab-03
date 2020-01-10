@@ -48,20 +48,7 @@ ConstructPics.loadPics = () => {
 
 $(() => ConstructPics.readJson());
 
-// filter images ------------------
-// ConstructPics.prototype.filterImage = function() {
-//   let hornOption = $('select').append('<option>text</option>');
-
-//   let hornHtml = $('select').html();
-
-//   hornOption.html(hornHtml);
-
-//   hornOption.find('option').text(this.keyword)
-//   hornOption.removeClass('clone');
-//   hornOption.attr('class', this.keyword);
-// };
-
-// new stuff --------------
+// filter images and sorts by click
 
 ConstructPics.filterImage = () => {
   let filterKey = [];
@@ -79,8 +66,6 @@ ConstructPics.filterImage = () => {
     $('select').append(optionTag);
   });
 };
-
-
 
 ConstructPics.handlefilter = () => {
   $('select').on('change', function () {
