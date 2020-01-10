@@ -1,0 +1,22 @@
+h1, h2, p {
+    font-family: 'Seymour One', sans-serif;
+}
+
+img {
+    height: 250px;
+}
+ 
+div {
+     float: left;
+     width: auto;
+     margin: 10px;
+ }
+ 
+footer {
+    float: left;
+    clear: both;
+    width: 100%;
+    text-align: center;
+    height: 100px;
+    line-height: 100px;
+ }
