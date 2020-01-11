@@ -12,15 +12,6 @@ function ConstructPics (hornPic) {
   this.horns = hornPic.horns;
 }
 
-// // show/hide functions
-// function show(elem) {
-//   elem.style.display = 'block';
-// }
-
-// function hide(elem){
-//   elem.style.display = 'none';
-// }
-
 // copies photo-template and connects constructed info to DOM
 ConstructPics.prototype.photoTemplate = function() {
   let hornClone = $('<div></div>');
