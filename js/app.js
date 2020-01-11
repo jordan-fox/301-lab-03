@@ -1,6 +1,7 @@
 'use strict';
 
 ConstructPics.picArray = [];
+ConstructPics.picArray2 = [];
 
 // CONSTRUCTOR
 function ConstructPics (hornPic) {
@@ -10,6 +11,15 @@ function ConstructPics (hornPic) {
   this.keyword = hornPic.keyword;
   this.horns = hornPic.horns;
 }
+
+// // show/hide functions
+// function show(elem) {
+//   elem.style.display = 'block';
+// }
+
+// function hide(elem){
+//   elem.style.display = 'none';
+// }
 
 // copies photo-template and connects constructed info to DOM
 ConstructPics.prototype.photoTemplate = function() {
@@ -36,7 +46,17 @@ ConstructPics.readJson = () => {
       ConstructPics.picArray.forEach(hornPic => {
         $('main').append(hornPic.photoTemplate());
       });
+    });
+  $.get('data/page2.json')
+    .then(data => {
+      data.forEach(item => {
+        ConstructPics.picArray2.push(new ConstructPics(item));
+      });
+      ConstructPics.picArray2.forEach(hornPic => {
+        $('main').append(hornPic.photoTemplate());
+      });
     })
+    .then(ConstructPics.changePage)
     .then(ConstructPics.filterImage)
     .then(ConstructPics.handlefilter);
 };
@@ -79,5 +99,26 @@ ConstructPics.handlefilter = () => {
         }
       });
     }
-  })
+  });
 };
+
+ConstructPics.changePage = () => {
+  console.log('I am here!');
+  $('button').on('click', function(){
+    $('option').remove();
+
+    ConstructPics.picArray = [];
+    ConstructPics.picArray2 = [];
+
+    let buttonValue = $(this).val();
+    if( buttonValue === 'page 1'){
+      ConstructPics.readJson();
+      $('option').show();
+    } else if (buttonValue === 'page 2'){
+      ConstructPics.readJson();
+      $('option').show();
+    }
+  });
+};
+
+console.log(ConstructPics.picArray2);
