@@ -23,7 +23,7 @@ function ConstructPics (hornPic) {
 
 // copies photo-template and connects constructed info to DOM
 ConstructPics.prototype.photoTemplate = function() {
-  let hornClone = $('<div></div');
+  let hornClone = $('<div></div>');
 
   let hornHtml = $('#photo-template').html();
 
@@ -47,6 +47,21 @@ ConstructPics.readJson = () => {
         $('main').append(hornPic.photoTemplate());
       });
     });
+  // $.get('data/page2.json')
+  //   .then(data => {
+  //     data.forEach(item => {
+  //       ConstructPics.picArray2.push(new ConstructPics(item));
+  //     });
+  //     ConstructPics.picArray2.forEach(hornPic => {
+  //       $('main').append(hornPic.photoTemplate());
+  //     });
+  //   })
+  //   .then(ConstructPics.changePage)
+  //   .then(ConstructPics.filterImage)
+  //   .then(ConstructPics.handlefilter);
+};
+
+ConstructPics.readJson2 = () => {
   $.get('data/page2.json')
     .then(data => {
       data.forEach(item => {
@@ -55,10 +70,18 @@ ConstructPics.readJson = () => {
       ConstructPics.picArray2.forEach(hornPic => {
         $('main').append(hornPic.photoTemplate());
       });
-    })
-    .then(ConstructPics.changePage)
-    .then(ConstructPics.filterImage)
-    .then(ConstructPics.handlefilter);
+    });
+};
+
+ConstructPics.explodeJson = () => {
+  $('document').ready();
+
+  ConstructPics.readJson();
+  ConstructPics.readJson2();
+
+  ConstructPics.changePage();
+  ConstructPics.filterImage();
+  ConstructPics.handlefilter();
 };
 
 // renders each photo ------------
@@ -66,10 +89,9 @@ ConstructPics.loadPics = () => {
   ConstructPics.picArray.forEach(hornPic => hornPic.photoTemplate());
 };
 
-$(() => ConstructPics.readJson());
+// $(() => ConstructPics.readJson());
 
 // filter images and sorts by click
-
 ConstructPics.filterImage = () => {
   let filterKey = [];
 
@@ -104,8 +126,9 @@ ConstructPics.handlefilter = () => {
 
 ConstructPics.changePage = () => {
   console.log('I am here!');
+  $('document').ready();
   $('button').on('click', function(){
-    $('option').remove();
+    $('div').remove();
 
     ConstructPics.picArray = [];
     ConstructPics.picArray2 = [];
@@ -113,12 +136,14 @@ ConstructPics.changePage = () => {
     let buttonValue = $(this).val();
     if( buttonValue === 'page 1'){
       ConstructPics.readJson();
-      $('option').show();
+      $('div').show();
     } else if (buttonValue === 'page 2'){
-      ConstructPics.readJson();
-      $('option').show();
+      ConstructPics.readJson2();
+      $('div').show();
     }
   });
 };
 
-console.log(ConstructPics.picArray2);
+// console.log(ConstructPics.picArray2);
+
+ConstructPics.explodeJson();
