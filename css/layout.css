@@ -2,7 +2,18 @@ h1, h2, p {
     font-family: 'Seymour One', sans-serif;
 }
 
+main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 img {
+    height: 250px;
+    width: 25%;
+}
+
+/* _____________ floats styling ____________ */
+/* img {
     height: 250px;
 }
  
@@ -19,4 +30,4 @@ footer {
     text-align: center;
     height: 100px;
     line-height: 100px;
- }
+ } */
